@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+// import { Route, Redirect, withRouter } from 'react-router-dom';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 
 // Passed in from parent component or from mapStateToProps

@@ -5,9 +5,17 @@ const tweets = require("./routes/api/tweets");
 const bodyParser = require('body-parser');
 // const User = require('./models/User');
 const passport = require('passport');
+const path = require('path');
 
 const app = express();
 const db = require('./config/keys').mongoURI;
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('frontend/build'));
+  app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+  })
+}
 
 mongoose
   .connect(db, { useNewUrlParser: true })
@@ -21,7 +29,7 @@ app.get("/", (req, res) => {
     //     password: "iamjim"
     // })
     // user.save()
-    res.send("Screw You")
+    res.send("Hello World")
 });
 
 app.use(passport.initialize());
